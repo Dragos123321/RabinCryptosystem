@@ -127,18 +127,6 @@ class Rabin:
 
             encrypted_msg += current_str
 
-        # for i in range(0, len(encrypted_msg), dec_len):
-        #     ch = 0
-        #     for p in range(dec_len):
-        #         ch += (27 ** (dec_len - p - 1)) * self.__return_ascii(encrypted_msg[i + p])
-        #
-        #     s1_p, s1_n = get_solutions(ch % self.__prime1, self.__prime1)
-        #     s2_p, s2_n = get_solutions(ch % self.__prime2, self.__prime2)
-        #
-        #     if s1_p is None or s2_p is None:
-        #         self.__init__()
-        #         return self.encrypter(message)
-
         return encrypted_msg
 
     # This function takes all decrypted pairs and creates all potential messages.
