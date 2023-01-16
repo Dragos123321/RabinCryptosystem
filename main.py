@@ -85,11 +85,19 @@ class Rabin:
         else:
             return ord(ch) - ord('A') + 1
 
+    def check_message(self, message):
+        if len(message) == 0:
+                raise ValueError("Length of message should be greater than 0")
+        for ch in message:
+            if ch not in " ABCDEFGHIJKLMNOPQRSTUVWXYZ":
+                raise ValueError("Message should contain only upper case letters and spaces")
+
     # This function is used to encrypt a message, and we also append this message to the message list such that
     # we will be able to find only valid solutions for decryption.
     # The message is encrypted firstly by converting each cry_len pairs to m and then c = m^2 mod pub_key
     # c will be used to create the encrypted message which will consist of pairs of length dec_len.
     def encrypter(self, message):
+        self.check_message(message)
         if message not in self.__messages:
             self.__messages.append(message)
         encrypted_msg = ""
@@ -311,7 +319,10 @@ class Rabin:
 
 rabin = Rabin()
 
-encrypt = rabin.encrypter("THIS IS RABIN")
-print(encrypt)
-decrypted = rabin.decrypter(encrypt)
-print(decrypted)
+try:
+    encrypt = rabin.encrypter("asgcvhasvcg gasvcgasvchg")
+    print(encrypt)
+    decrypted = rabin.decrypter(encrypt)
+    print(decrypted)
+except ValueError as err:
+    print(err)
